@@ -1,27 +1,25 @@
 [
-	{
-		"id": "1",
-		"text": "央视频道",
-		"children": [
-			{
-				"text": "CCTV1",
-				"url": [
-					"https://tv.cctv.com/live/cctv1/",
-					"https://www.yangshipin.cn/tv/home?pid=600001859"
-				]
-			}
-		]
-	},
-	{
-		"id": "2",
-		"text": "卫视频道",
-		"children": [
-			{
-				"text": "北京卫视",
-				"url": "https://www.yangshipin.cn/tv/home?pid=600002309"
-			}
-		
-	
-	
-		
+  {
+    "id": "1",
+    "text": "央视频道",
+    "children": [
+      {
+        "text": "CCTV1",
+        "url": [
+          "https://tv.cctv.com/live/cctv1/",
+          "https://www.yangshipin.cn/tv/home?pid=600001859"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "text": "卫视频道",
+    "children": [
+      {
+        "text": "北京卫视",
+        "url": "https://www.yangshipin.cn/tv/home?pid=600002309"
+      }
+    ]
+  }
 ]
