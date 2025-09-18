@@ -1,9 +1,9 @@
 name: Sync wtv Releases
 
 on:
-  workflow_dispatch:           # 支持手动触发
+  workflow_dispatch:           # 手动触发
   schedule:
-    - cron: "30 2 * * *"       # 每天 10:30（北京时间）自动执行
+    - cron: "30 2 * * *"       # 每天 10:30 北京时间自动同步
 
 jobs:
   sync:
@@ -11,24 +11,24 @@ jobs:
 
     steps:
       - name: Get latest release info
-        id: get_release
+        id: latest
         uses: pozetroninc/github-action-get-latest-release@v0.7.0
         with:
           repository: maitel2020/wtv
 
-      - name: Download release assets
+      - name: Download assets
         uses: dsaltares/fetch-gh-release-asset@1.1.2
         with:
           repo: maitel2020/wtv
-          version: ${{ steps.get_release.outputs.release }}
+          version: latest              # 这里固定写 latest，Action 会自动取最新 tag
           file: "*"
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Upload to my repo release
+      - name: Publish to my repo
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ steps.get_release.outputs.release }}
-          name: "wtv ${{ steps.get_release.outputs.release }}"
+          tag_name: ${{ steps.latest.outputs.release }}
+          name: "wtv ${{ steps.latest.outputs.release }}"
           files: |
             ./*
         env:
