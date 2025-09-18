@@ -8,6 +8,7 @@ on:
 jobs:
   sync:
     runs-on: ubuntu-latest
+
     steps:
       - name: Get latest release info
         id: latest
@@ -20,16 +21,18 @@ jobs:
         with:
           repo: maitel2020/wtv
           version: latest
-          file: ".*\\.apk"            # 用正则匹配 apk
+          file: "wtv\\.apk"
           regex: true
           token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Verify downloaded files
+        run: ls -lh
 
       - name: Publish to my repo
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ steps.latest.outputs.release }}
           name: "wtv ${{ steps.latest.outputs.release }}"
-          files: |
-            *.apk
+          files: "wtv.apk"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
