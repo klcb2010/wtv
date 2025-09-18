@@ -5,6 +5,9 @@ on:
   schedule:
     - cron: "30 2 * * *"  # 每天 10:30 北京时间自动同步
 
+permissions:
+  contents: write  # Ensure permissions for creating releases
+
 jobs:
   sync:
     runs-on: ubuntu-latest
@@ -18,7 +21,8 @@ jobs:
 
       - name: Delete existing release (if any)
         run: |
-          gh release delete "${{ steps.latest.outputs.release }}" --repo klcb2010/wtv --yes
+          echo "Attempting to delete release: ${{ steps.latest.outputs.release }}"
+          gh release delete "${{ steps.latest.outputs.release }}" --repo klcb2010/wtv --yes || echo "No release found to delete"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -27,18 +31,28 @@ jobs:
         with:
           repo: maitel2020/wtv
           version: latest
-          file: "wtv\\.apk"
+          file: "wtv.*\\.apk"  # Broader regex to match wtv*.apk
           regex: true
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Check downloaded files
-        run: ls -lh
+        run: |
+          ls -lh
+          if [ -z "$(ls wtv*.apk 2>/dev/null)" ]; then
+            echo "Error: No APK file was downloaded"
+            exit 1
+          fi
+
+      - name: Rename APK file
+        run: |
+          mv $(ls wtv*.apk) wtv.apk || echo "No matching APK file found"
+          ls -lh  # Verify the renamed file
 
       - name: Publish to my repo
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ steps.latest.outputs.release }}
           name: "wtv ${{ steps.latest.outputs.release }}"
-          files: "wtv.apk"
+          files: wtv.apk
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
