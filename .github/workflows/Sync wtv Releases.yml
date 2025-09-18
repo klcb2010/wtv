@@ -1,14 +1,13 @@
-name: Sync wtv Releases
+name: Sync wtv Release
 
 on:
-  workflow_dispatch:           # 手动触发
+  workflow_dispatch:
   schedule:
-    - cron: "30 2 * * *"       # 每天 10:30 北京时间自动同步
+    - cron: "30 2 * * *"
 
 jobs:
   sync:
     runs-on: ubuntu-latest
-
     steps:
       - name: Get latest release info
         id: latest
@@ -16,12 +15,13 @@ jobs:
         with:
           repository: maitel2020/wtv
 
-      - name: Download assets
+      - name: Download APK asset
         uses: dsaltares/fetch-gh-release-asset@1.1.2
         with:
           repo: maitel2020/wtv
-          version: latest              # 这里固定写 latest，Action 会自动取最新 tag
-          file: "*"
+          version: latest
+          file: ".*\\.apk"            # 用正则匹配 apk
+          regex: true
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish to my repo
@@ -30,6 +30,6 @@ jobs:
           tag_name: ${{ steps.latest.outputs.release }}
           name: "wtv ${{ steps.latest.outputs.release }}"
           files: |
-            ./*
+            *.apk
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
