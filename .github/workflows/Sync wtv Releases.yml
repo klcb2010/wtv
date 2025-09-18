@@ -1,0 +1,36 @@
+name: Sync wtv Releases
+
+on:
+  workflow_dispatch:        # 手动触发
+  schedule:
+    - cron: "30 2 * * *"    # 每天 10:30（北京时间）自动同步
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout self
+        uses: actions/checkout@v4
+
+      - name: Get latest release info
+        id: get_release
+        uses: pozetroninc/github-action-get-latest-release@v0.7.0
+        with:
+          repository: maitel2020/wtv
+
+      - name: Download release assets
+        uses: dsaltares/fetch-gh-release-asset@v1
+        with:
+          repo: maitel2020/wtv
+          version: ${{ steps.get_release.outputs.release }}
+          file: "*"
+
+      - name: Upload to my repo release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.get_release.outputs.release }}
+          name: "wtv ${{ steps.get_release.outputs.release }}"
+          files: |
+            ./*       # 或指定具体文件
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
