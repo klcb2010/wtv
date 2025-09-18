@@ -3,28 +3,25 @@ name: Sync wtv APK Release (overwrite)
 on:
   workflow_dispatch:
   schedule:
-    - cron: "30 2 * * *"   # 每天 10:30 北京时间自动同步
+    - cron: "30 2 * * *"  # 每天 10:30 北京时间自动同步
 
 jobs:
   sync:
     runs-on: ubuntu-latest
 
     steps:
-      # 获取上游最新 release
       - name: Get latest release info
         id: latest
         uses: pozetroninc/github-action-get-latest-release@v0.7.0
         with:
           repository: maitel2020/wtv
 
-      # 删除已有 Release（如果存在）
       - name: Delete existing release (if any)
-        uses: peter-evans/delete-release@v1
-        with:
-          tag: ${{ steps.latest.outputs.release }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release delete "${{ steps.latest.outputs.release }}" --repo klcb2010/wtv --yes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # 下载 APK 资产
       - name: Download APK asset
         uses: dsaltares/fetch-gh-release-asset@1.1.2
         with:
@@ -34,11 +31,9 @@ jobs:
           regex: true
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      # 确认下载
       - name: Check downloaded files
         run: ls -lh
 
-      # 上传到你仓库 Release，覆盖原 tag
       - name: Publish to my repo
         uses: softprops/action-gh-release@v1
         with:
