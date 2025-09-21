@@ -1,6 +1,6 @@
 [
 {"id":"1","text":"央视频道","children":[
-{"text":"CCTV1","url":["https://www.yangshipin.cn/tv/home?pid=600001859","https://tv.cctv.com/live/cctv1/"]},
+{"text":"CCTV1","url":["https://www.yangshipin.cn/tv/home?pid=600001859","https://tv.cctv.com/live/cctv1/?spm=C28340.PKIUk5AmVMT8.ExidtyEJcS5K.1"]},
 {"text":"CCTV2","url":["https://www.yangshipin.cn/tv/home?pid=600001800","https://tv.cctv.com/live/cctv2/"]}, 
 {"text":"CCTV3","url":["https://www.yangshipin.cn/tv/home?pid=600001801","https://tv.cctv.com/live/cctv3/"]},
 {"text":"CCTV4","url":["https://www.yangshipin.cn/tv/home?pid=600001814","https://tv.cctv.com/live/cctv4/"]},
@@ -12,10 +12,10 @@
 {"text":"CCTV9","url":["https://www.yangshipin.cn/tv/home?pid=600004078","https://tv.cctv.com/live/cctv9/"]},
 {"text":"CCTV10","url":["https://www.yangshipin.cn/tv/home?pid=600001805","https://tv.cctv.com/live/cctv10/"]},
 {"text":"CCTV11","url":["https://www.yangshipin.cn/tv/home?pid=600001806","https://tv.cctv.com/live/cctv11/"]},
-{"text":"CCTV12","url":["https://www.yangshipin.cn/tv/home?pid=600001807","https://tv.cctv.com/live/cctv12/"]}
-{"text":"CCTV13","url":["https://www.yangshipin.cn/tv/home?pid=600001811","https://tv.cctv.com/live/cctv13/"]}
-{"text":"CCTV14","url":["https://www.yangshipin.cn/tv/home?pid=600001809","https://tv.cctv.com/live/cctv14/"]}
-{"text":"CCTV15","url":["https://www.yangshipin.cn/tv/home?pid=600001815","https://tv.cctv.com/live/cctv15/"]}
+{"text":"CCTV12","url":["https://www.yangshipin.cn/tv/home?pid=600001807","https://tv.cctv.com/live/cctv12/"]}'
+{"text":"CCTV13","url":["https://www.yangshipin.cn/tv/home?pid=600001811","https://tv.cctv.com/live/cctv13/"]}'
+{"text":"CCTV14","url":["https://www.yangshipin.cn/tv/home?pid=600001809","https://tv.cctv.com/live/cctv14/"]}'
+{"text":"CCTV15","url":["https://www.yangshipin.cn/tv/home?pid=600001815","https://tv.cctv.com/live/cctv15/"]}'
 {"text":"CCTV16","url":["https://www.yangshipin.cn/tv/home?pid=600099502","https://tv.cctv.com/live/cctv16/"]}
 
 ]},
