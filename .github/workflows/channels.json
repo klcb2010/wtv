@@ -21,7 +21,7 @@
 ]},
 
 {"id":"2","text":"卫视频道","children":[
-{"text":"北京卫视","url":["https://www.yangshipin.cn/tv/home?pid=600002309"]},
+{"text":"北京卫视","url":["https://www.yangshipin.cn/tv/home?pid=600002309","https://www.btime.com/btv/btvsy_index"]},
 {"text":"江苏卫视","url":["https://www.yangshipin.cn/tv/home?pid=600002521"]}, 
 {"text":"东方卫视","url":["https://www.yangshipin.cn/tv/home?pid=600002483"]}, 
 {"text":"浙江卫视","url":["https://www.yangshipin.cn/tv/home?pid=600002520","https://www.cztv.com/liveTV"]}, 
